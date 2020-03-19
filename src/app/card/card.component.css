@@ -1,0 +1,11 @@
+.border1 {
+border: 1px solid black;
+ width: 200px;
+  height: 200px;
+  padding: 2px;
+ }
+ 
+ /* custon hover styling for close button and class named hand-hover */
+ .hand-hover:hover {
+     cursor:pointer;
+ }
