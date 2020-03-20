@@ -1,7 +1,7 @@
-<div class="border1">
+<div class="border1" *ngIf="!showDeleteConfirm">
   <p>
  Name: {{ name }}
- <i class="fa fa-close float-right hand-hover" (click)="handleDelete() "
+ <i class="fa fa-close float-right hand-hover" (click)="handleDelete()"
   *ngIf="showCloseButton"
  
  ></i><br>
@@ -11,4 +11,9 @@
 (handleGivenPassword)="verifyPassword($event)"
 ></app-text-box>
 </p>
+</div>
+<div class="border1" *ngIf="showDeleteConfirm">
+  <p>Are you sure you want to delete?</p>
+  <button type="button" (click)="cancelDelete()">No</button>
+  <button type="button" (click)="confirmDelete()">Yes</button>
 </div>

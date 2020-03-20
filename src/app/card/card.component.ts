@@ -11,6 +11,7 @@ export class CardComponent implements OnInit {
 @Input() password;
 passwordAsArray=[];
 showCloseButton=false;
+showDeleteConfirm=false;
 
 
 @Output() cardDelete = new EventEmitter<number>();
@@ -24,10 +25,17 @@ showCloseButton=false;
 console.log(this.index);
   }
 
-  
+confirmDelete() {
+this.cardDelete.emit(this.index)
+}
+cancelDelete() {
+  this.showDeleteConfirm=false;
+}
+
+
 handleDelete() {
-  this.cardDelete.emit(this.index)
-  }
+this.showDeleteConfirm=true;
+}
 
 verifyPassword(givenPassword) {
 if(this.password===givenPassword){
