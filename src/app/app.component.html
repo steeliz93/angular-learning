@@ -14,7 +14,10 @@
     </div>
 
     <div class="col-lg-4">
-      <app-getdetails (formSave)="handleFormData($event)"></app-getdetails>
+      <app-getdetails (formSave)="handleFormData($event)"
+      (nameCheck)="handleNameData($event)"
+      [nameStatus]="nameCheckStatus"
+      ></app-getdetails>
     </div>
   </div>
 </div>

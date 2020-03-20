@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input,OnChanges } from '@angular/core';
 
 
 @Component({
@@ -6,17 +6,29 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './getdetails.component.html',
   styleUrls: ['./getdetails.component.css']
 })
-export class GetdetailsComponent implements OnInit {
+export class GetdetailsComponent implements OnInit, OnChanges{
 
-  showSaveButton=false;
+showSaveButton=false;
 
+@Input() nameStatus;
+  
   @Output() formSave = new EventEmitter <{name:string, password:string,confirmPassword:string}> ();
-
+  @Output() nameCheck = new EventEmitter <string>();
 
 formData:{name:string, password:string,confirmPassword:string} = {name:"", password:"",confirmPassword:""};
 // for two-way binding
 
   constructor() { }
+
+  ngOnChanges(){
+    if(this.nameStatus===true){
+      this.showSaveButton=false;
+    }
+    else{
+      this.showSaveButton=true;
+    }
+console.log(this.nameStatus);
+  }
 
   ngOnInit(): void {
   }
@@ -31,8 +43,13 @@ confirmPasswordCheck() {
 this.showSaveButton=true;
   }
   else{
-    this.showSaveButton=false;
+  this.showSaveButton=false;
   }
 }
+
+handleNameInput(){
+this.nameCheck.emit(this.formData.name);
+}
+
 
 }
