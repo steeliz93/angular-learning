@@ -8,9 +8,11 @@ import { Component, OnInit, Output, EventEmitter, Input,OnChanges } from '@angul
 })
 export class GetdetailsComponent implements OnInit, OnChanges{
 
-showSaveButton=false;
+disableSaveButton=true;
 
-@Input() nameStatus;
+@Input() nameStatus=true;
+showNameMessage=false;
+showPasswordMessage=false;
   
   @Output() formSave = new EventEmitter <{name:string, password:string,confirmPassword:string}> ();
   @Output() nameCheck = new EventEmitter <string>();
@@ -21,14 +23,18 @@ formData:{name:string, password:string,confirmPassword:string} = {name:"", passw
   constructor() { }
 
   ngOnChanges(){
+   if(this.nameStatus!=undefined) {
     if(this.nameStatus===true){
-      this.showSaveButton=false;
+      this.disableSaveButton=true;
+      this.showNameMessage=true;
     }
     else{
-      this.showSaveButton=true;
+      this.disableSaveButton=false;
+      this.showNameMessage=false;
     }
 console.log(this.nameStatus);
   }
+}
 
   ngOnInit(): void {
   }
@@ -40,10 +46,12 @@ console.log(this.nameStatus);
 
 confirmPasswordCheck() {
   if ( this.formData.password === this.formData.confirmPassword){
-this.showSaveButton=true;
+this.disableSaveButton=false;
+this.showPasswordMessage=false;
   }
   else{
-  this.showSaveButton=false;
+  this.disableSaveButton=true;
+  this.showPasswordMessage=true;
   }
 }
 
