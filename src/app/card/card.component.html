@@ -1,14 +1,14 @@
 <div class="border1">
   <p>
-    Name: {{ name }}
-<i class="fa fa-close float-right hand-hover" (click)="handleDelete()" *ngIf="showCloseButton"></i><br>
+ Name: {{ name }}
+ <i class="fa fa-close float-right hand-hover" (click)="handleDelete() "
+  *ngIf="showCloseButton"
+ 
+ ></i><br>
 
-Password: <span *ngFor="let char of passwordAsArray">*</span>
-
+ Password: <span *ngFor="let char of passwordAsArray">*</span>
 <app-text-box
 (handleGivenPassword)="verifyPassword($event)"
 ></app-text-box>
-
-  </p>
-
+</p>
 </div>

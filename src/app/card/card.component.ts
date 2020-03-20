@@ -24,9 +24,10 @@ showCloseButton=false;
 console.log(this.index);
   }
 
+  
 handleDelete() {
   this.cardDelete.emit(this.index)
-}
+  }
 
 verifyPassword(givenPassword) {
 if(this.password===givenPassword){

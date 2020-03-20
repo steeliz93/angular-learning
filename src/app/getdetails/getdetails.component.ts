@@ -41,7 +41,8 @@ console.log(this.nameStatus);
 
   handleSave() {
     this.formSave.emit({...this.formData});
-    //spread operator is used to create a new copy of object in order to avoid aliasing issue.
+//spread operator is used to create a new copy of object in order to avoid aliasing issue.
+this.formData={name:"",password:"",confirmPassword:""};
 }
 
 confirmPasswordCheck() {
