@@ -9,6 +9,8 @@ export class CardComponent implements OnInit {
 @Input() name:string;
 @Input() index:number;
 @Input() password;
+sessionToShow="mainMenu";
+pin:string;
 passwordAsArray=[];
 showCloseButton=false;
 showDeleteConfirm=false;
@@ -28,13 +30,14 @@ console.log(this.index);
 confirmDelete() {
 this.cardDelete.emit(this.index)
 }
+
 cancelDelete() {
-  this.showDeleteConfirm=false;
+  this.sessionToShow="mainMenu";
 }
 
 
 handleDelete() {
-this.showDeleteConfirm=true;
+  this.sessionToShow="confirmDelete";
 }
 
 verifyPassword(givenPassword) {
@@ -44,8 +47,12 @@ this.showCloseButton=true;
 else{
   this.showCloseButton=false;
 }
-
 }
+
+handleGeneratePin() {
+this.sessionToShow = 'capturePin';
+}
+
 
 ngOnDestroy(){
   console.log(this.index);

@@ -1,19 +1,40 @@
-<div class="border1" *ngIf="!showDeleteConfirm">
-  <p>
- Name: {{ name }}
- <i class="fa fa-close float-right hand-hover" (click)="handleDelete()"
-  *ngIf="showCloseButton"
- 
- ></i><br>
+<div class="border1" *ngIf="sessionToShow === 'mainMenu'">
+  Name: {{ name }}
+  <i
+    class="fa fa-close float-right hand-hover"
+    (click)="handleDelete()"
+    *ngIf="showCloseButton"
+  ></i
+  ><br />
 
- Password: <span *ngFor="let char of passwordAsArray">*</span>
-<app-text-box
-(handleGivenPassword)="verifyPassword($event)"
-></app-text-box>
-</p>
+  Password: <span *ngFor="let char of passwordAsArray">*</span>
+  <app-text-box (handleGivenPassword)="verifyPassword($event)"></app-text-box>
+  <div class="d-flex  justify-content-center ">
+    <div>
+      <button
+        class="btn btn-primary btn-sm mt-2"
+        type="button"
+        (click)="handleGeneratePin()"
+      >
+        Generate PIN
+      </button>
+    </div>
+  </div>
 </div>
-<div class="border1" *ngIf="showDeleteConfirm">
+
+<div class="border1" *ngIf="sessionToShow === 'confirmDelete'">
   <p>Are you sure you want to delete?</p>
   <button type="button" (click)="cancelDelete()">No</button>
   <button type="button" (click)="confirmDelete()">Yes</button>
+</div>
+
+<div class="border1" *ngIf="sessionToShow === 'capturePin'">
+  <label>Enter PIN</label>
+  <input
+    type="password"
+    maxlength="4"
+    placeholder="Enter 4 Digits"
+    [(ngModel)]="pin"
+  />
+  <button type="button" (click)="sessionToShow = 'mainMenu'">cancel</button>
 </div>
